@@ -20,15 +20,23 @@ const fetchpokemon = () => {
         displayPokemon(pokemon);
     });
 };
-
 const displayPokemon = (pokemon) => {
     console.log(pokemon);
-    const pokemonHTMLString = pokemon.map ( pokeman => `
-    <li>
-        
-    </li>
-    `)
-    pokedex.innerHTML = html;
+    const pokemonHTMLString = pokemon
+        .map(
+            (pokeman) => `
+        <li class="card">
+            <img class="card-image" src="${pokeman.image}"/>
+            <h2 class="card-title">${pokeman.id}. ${pokeman.name}</h2>
+            <p class="card-subtitle">Type: ${pokeman.type}</p>
+            <form method="get" action="/page2">
+                 <button type="submit">Info</button>
+            </form>
+        </li>
+    `
+        )
+        .join('');
+    pokedex.innerHTML = pokemonHTMLString;
 };
 
 fetchpokemon();
